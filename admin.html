@@ -1,1 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTEC Level 3 National Extended Diploma in Computing - Unit 3: Digital Portfolio</title>
+  
+  <!-- FontAwesome Icons for clean UI cues -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <style>
+    /* Global Reset & Typography */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Layout Containers */
+    header {
+      background-color: #ffffff;
+      border-bottom: 2px solid #cbd5e1;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-title-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-logo {
+      background-color: #0f172a;
+      color: #ffffff;
+      height: 40px;
+      width: 40px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .header-text h1 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.025em;
+    }
+
+    .header-text p {
+      font-size: 0.75rem;
+      color: #64748b;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* Main Hub Navigation Tabs */
+    .hub-tabs {
+      display: flex;
+      background-color: #e2e8f0;
+      padding: 4px;
+      border-radius: 8px;
+      gap: 4px;
+    }
+
+    .hub-tab-btn {
+      background: none;
+      border: none;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #475569;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hub-tab-btn.active {
+      background-color: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    main {
+      max-width: 1400px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    /* Card Panels */
+    .panel-card {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .panel-header {
+      margin-bottom: 20px;
+      border-b: 1px solid #e2e8f0;
+      padding-bottom: 15px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .badge-secondary {
+      background-color: #f1f5f9;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .badge-primary {
+      background-color: #0f172a;
+      color: #ffffff;
+    }
+
+    .badge-success {
+      background-color: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .panel-title {
+      font-size: 1.5rem;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .panel-description {
+      color: #475569;
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    /* Dual Grid Layouts */
+    .dual-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 992px) {
+      .dual-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .grid-3-col {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 24px;
+      }
+    }
+
+    /* Custom Web Browser Frame Simulator */
+    .browser-window {
+      border: 2px solid #cbd5e1;
+      border-radius: 12px;
+      background-color: #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    }
+
+    .browser-header {
+      background-color: #f8fafc;
+      border-bottom: 1px solid #cbd5e1;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .browser-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .control-dot {
+      height: 12px;
+      width: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot-red { background-color: #ef4444; }
+    .dot-yellow { background-color: #f59e0b; }
+    .dot-green { background-color: #10b981; }
+
+    .browser-address-bar {
+      flex-grow: 1;
+      max-width: 600px;
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Simulation Nav Tabs inside the browser mockup */
+    .browser-nav {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+
+    .browser-nav-btn {
+      background-color: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 4px;
+      color: #475569;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .browser-nav-btn.active, .browser-nav-btn:hover {
+      background-color: #0f172a;
+      color: #ffffff;
+      border-color: #0f172a;
+    }
+
+    .browser-content-canvas {
+      padding: 30px;
+      background-color: #fafafa;
+      min-height: 500px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    /* Portfolio Pages Styles */
+    .sim-page {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .sim-page.hidden {
+      display: none !important;
+    }
+
+    .hero-banner {
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 40px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .hero-banner h3 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .hero-banner p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      max-width: 700px;
+    }
+
+    /* Unit Cards Dashboard Grid */
+    .unit-dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .unit-tile {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .unit-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      border-color: #94a3b8;
+    }
+
+    .unit-tile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .unit-tile-icon {
+      font-size: 1.25rem;
+      color: #334155;
+    }
+
+    .unit-tile h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .unit-tile p {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    /* Forms */
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #475569;
+      margin-bottom: 4px;
+    }
+
+    .form-control {
+      width: 100%;
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      color: #1e293b;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: #0f172a;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: #0f172a;
+      color: #ffffff;
+      border: 1px solid #0f172a;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: #334155;
+      border-color: #334155;
+    }
+
+    .btn-secondary {
+      background-color: #ffffff;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    /* Tables */
+    .data-table-container {
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #ffffff;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    .data-table th {
+      background-color: #f8fafc;
+      color: #475569;
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 1px solid #cbd5e1;
+    }
+
+    .data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #cbd5e1;
+      color: #334155;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Database, Code Sandbox Components */
+    .code-editor-box {
+      background-color: #0f172a;
+      border-radius: 8px;
+      padding: 16px;
+      color: #f8fafc;
+      font-family: monospace;
+      font-size: 0.8rem;
+    }
+
+    .code-editor-box textarea {
+      width: 100%;
+      background: none;
+      border: none;
+      color: #38bdf8;
+      font-family: monospace;
+      font-size: 0.8rem;
+      resize: none;
+      outline: none;
+      margin-top: 10px;
+    }
+
+    /* Interactive playground panels */
+    .playground-box {
+      background-color: #ffffff;
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    /* Toast System style */
+    .toast-message {
+      background-color: #0f172a;
+      color: #ffffff;
+      border-left: 4px solid #10b981;
+      padding: 12px 20px;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Virtual directory trees */
+    .directory-tree {
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 20px;
+      font-family: monospace;
+      font-size: 0.8rem;
+    }
+
+    .tree-folder {
+      color: #0f172a;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .tree-items {
+      padding-left: 20px;
+      border-left: 1px dotted #94a3b8;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .tree-file {
+      color: #475569;
+    }
+
+    /* Interactive state targets (Playgrounds) */
+    .interactive-card {
+      padding: 24px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .interactive-card:hover {
+      background-color: #f8fafc;
+      border-color: #0f172a;
+    }
+
+    .interactive-card .hover-details {
+      display: none;
+    }
+
+    .interactive-card:hover .default-details {
+      display: none;
+    }
+
+    .interactive-card:hover .hover-details {
+      display: block;
+    }
+
+    /* IoT Simulator Switches */
+    .switch-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #cbd5e1;
+      transition: .2s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .2s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #0f172a;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    /* Unit Specific Styles */
+    .network-svg-container {
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .matrix-ref {
+      font-family: monospace;
+      font-weight: 700;
+      color: #64748b;
+    }
+
+    footer {
+      background-color: #ffffff;
+      border-top: 2px solid #cbd5e1;
+      padding: 24px 40px;
+      margin-top: 60px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section with student info and high-contrast styling -->
+  <header>
+    <div class="header-title-area">
+      <div class="header-logo">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+      <div class="header-text">
+        <h1>ALEX MERCER</h1>
+        <p>BTEC Level 3 National Extended Diploma in Computing &bull; Unit 3 Portfolio Hub</p>
+      </div>
+    </div>
+    
+    <!-- Main Hub Navigation Panel tabs (High-contrast and clean) -->
+    <nav class="hub-tabs">
+      <button onclick="switchTab('prototype')" id="tab-btn-prototype" class="hub-tab-btn active">
+        <i class="fa-solid fa-display"></i> Interactive Site Simulator
+      </button>
+      <button onclick="switchTab('assets')" id="tab-btn-assets" class="hub-tab-btn">
+        <i class="fa-solid fa-folder-open"></i> Asset Architecture
+      </button>
+      <button onclick="switchTab('documentation')" id="tab-btn-documentation" class="hub-tab-btn">
+        <i class="fa-solid fa-file-lines"></i> Design Commentary
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Workspace -->
+  <main>
+
+    <!-- ================================================================= -->
+    <!-- TAB 1: INTERACTIVE PORTFOLIO PROTOTYPE SIMULATOR -->
+    <!-- ================================================================= -->
+    <div id="tab-content-prototype" class="tab-pane">
+      
+      <!-- Brief Description block -->
+      <div class="panel-card" style="margin-bottom: 24px;">
+        <span class="badge badge-primary">Assessment Evidence</span>
+        <h2 class="panel-title">Digital Portfolio Prototype Frame</h2>
+        <p class="panel-description">
+          This interactive browser tool executes simulated webpages of the digital portfolio. Use the page switcher links inside the window chrome to browse the Homepage and each course unit design live.
+        </p>
+      </div>
+
+      <!-- Simulated Web Browser frame container -->
+      <div class="browser-window">
+        <!-- Top window chrome panel -->
+        <div class="browser-header">
+          <div class="browser-controls">
+            <span class="control-dot dot-red"></span>
+            <span class="control-dot dot-yellow"></span>
+            <span class="control-dot dot-green"></span>
+          </div>
+
+          <div class="browser-address-bar">
+            <i class="fa-solid fa-lock"></i>
+            <span>https://alexmercer.github.io/portfolio/</span><span id="browser-address-page">home</span>
+          </div>
+
+          <!-- Chrome Navigation links to load webpages -->
+          <div class="browser-nav">
+            <button onclick="loadBrowserPage('home')" id="nav-btn-home" class="browser-nav-btn active">Home</button>
+            <button onclick="loadBrowserPage('unit1')" id="nav-btn-unit1" class="browser-nav-btn">Unit 1</button>
+            <button onclick="loadBrowserPage('unit2')" id="nav-btn-unit2" class="browser-nav-btn">Unit 2</button>
+            <button onclick="loadBrowserPage('unit6')" id="nav-btn-unit6" class="browser-nav-btn">Unit 6</button>
+            <button onclick="loadBrowserPage('unit7')" id="nav-btn-unit7" class="browser-nav-btn">Unit 7</button>
+            <button onclick="loadBrowserPage('unit12')" id="nav-btn-unit12" class="browser-nav-btn">Unit 12</button>
+            <button onclick="loadBrowserPage('unit21')" id="nav-btn-unit21" class="browser-nav-btn">Unit 21</button>
+            <button onclick="loadBrowserPage('unit25')" id="nav-btn-unit25" class="browser-nav-btn">Unit 25</button>
+          </div>
+        </div>
+
+        <!-- Simulated Active Canvas body -->
+        <div class="browser-content-canvas">
+          
+          <!-- ================= PAGE: HOMEPAGE ================= -->
+          <div id="page-home" class="sim-page">
+            <div class="hero-banner">
+              <h3>Alex Mercer</h3>
+              <p>Aspiring Systems Engineer. Welcome to my comprehensive academic digital repository designed for my Level 3 BTEC course evaluations.</p>
+            </div>
+
+            <div class="panel-card">
+              <h3 style="margin-bottom: 12px; color: #0f172a;">Coursework Portfolios & Systems Mapping</h3>
+              <p style="color: #475569; font-size: 0.9rem; margin-bottom: 20px;">
+                Below are the eight critical system checkpoints built to present core engineering, development, design, and cryptographic capabilities. Select any block or use the browser nav links above to preview.
+              </p>
+
+              <div class="unit-dashboard-grid">
+                <div class="unit-tile" onclick="loadBrowserPage('unit1')">
+                  <div class="unit-tile-header">
+                    <h4>Unit 1</h4>
+                    <i class="fa-solid fa-network-wired unit-tile-icon"></i>
+                  </div>
+                  <p>Information Technology Systems & Architecture designs.</p>
+                </div>
+
+                <div class="unit-tile" onclick="loadBrowserPage('unit2')">
+                  <div class="unit-tile-header">
+                    <h4>Unit 2</h4>
+                    <i class="fa-solid fa-database"></i>
+                  </div>
+                  <p>Creating Systems to Manage Information & SQL structures.</p>
+                </div>
+
+                <div class="unit-tile" onclick="loadBrowserPage('unit6')">
+                  <div class="unit-tile-header">
+                    <h4>Unit 6</h4>
+                    <i class="fa-solid fa-laptop-code"></i>
+                  </div>
+                  <p>Website Development and structural layouts.</p>
+                </div>
+
+                <div class="unit-tile" onclick="loadBrowserPage('unit7')">
+                  <div class="unit-tile-header">
+                    <h4>Unit 7</h4>
+                    <i class="fa-solid fa-mobile-screen"></i>
+                  </div>
+                  <p>Mobile Apps design layouts and UX mapping.</p>
+                </div>
+
+                <div class="unit-tile" onclick="loadBrowserPage('unit12')">
+                  <div class="unit-tile-header">
+                    <h4>Unit 12</h4>
+                    <i class="fa-solid fa-clipboard-list"></i>
+                  </div>
+                  <p>Software Design models, pseudocode, and matrices.</p>
+                </div>
+
+                <div class="unit-tile" onclick="loadBrowserPage('unit21')">
+                  <div class="unit-tile-header">
+                    <h4>Unit 21</h4>
+                    <i class="fa-solid fa-key"></i>
+                  </div>
+                  <p>Cryptography, encryption schemas, and playable ciphers.</p>
+                </div>
+
+                <div class="unit-tile" onclick="loadBrowserPage('unit25')">
+                  <div class="unit-tile-header">
+                    <h4>Unit 25</h4>
+                    <i class="fa-solid fa-microchip"></i>
+                  </div>
+                  <p>Internet of Things microcontroller actuator triggers.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="dual-grid">
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px; color: #0f172a;">Portfolio Goals & Target User Rationale</h3>
+                <p style="font-size: 0.85rem; color: #475569;">
+                  The purpose of this portfolio is to deliver academic evidence, wireframes, code structures, and logical architectures to internal moderators and external assessors. By simplifying layout formats, focusing on clean high contrast parameters, and optimizing for both desktop and mobile viewports, the framework addresses the specific visual and structural needs of BTEC grading rubrics.
+                </p>
+              </div>
+
+              <!-- Interactive Contact Form feedback element -->
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px; color: #0f172a;">Assessor Verification Feedback Form</h3>
+                <form id="feedback-form" onsubmit="submitFormSimulation(event)">
+                  <div class="form-group">
+                    <label>Verifier Name</label>
+                    <input type="text" id="verifier-name" class="form-control" placeholder="e.g. Lead Moderator" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Validation Remarks</label>
+                    <textarea id="verifier-text" class="form-control" rows="2" placeholder="Confirm portfolio requirements are successfully met..." required></textarea>
+                  </div>
+                  <button type="submit" class="btn">Log Validation</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= PAGE: UNIT 1 ================= -->
+          <div id="page-unit1" class="sim-page hidden">
+            <div class="panel-header">
+              <span class="badge badge-secondary">Unit 1: Information Technology Systems</span>
+              <h2 class="panel-title">Computer Architecture, Networks, and Bus Cycles</h2>
+              <p class="panel-description">Evaluating physical systems, processing architecture models, and organizational network topologies.</p>
+            </div>
+
+            <div class="dual-grid">
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px;">Infrastructure Design Topology</h3>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 16px;">
+                  This structured topology layout maps out a typical local campus network setup designed to support server virtualization and physical isolation barriers:
+                </p>
+                <!-- SVG Asset layout of Star-Bus setup -->
+                <div class="network-svg-container">
+                  <svg viewBox="0 0 350 200" width="100%" height="180">
+                    <rect x="135" y="10" width="80" height="30" rx="4" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+                    <text x="175" y="28" fill="#0f172a" font-size="10" font-weight="bold" text-anchor="middle">Gateway Router</text>
+
+                    <rect x="135" y="70" width="80" height="30" rx="4" fill="#ffffff" stroke="#475569" stroke-width="2" stroke-dasharray="3 3"/>
+                    <text x="175" y="88" fill="#475569" font-size="10" font-weight="bold" text-anchor="middle">Firewall</text>
+
+                    <rect x="40" y="130" width="70" height="26" rx="4" fill="#f1f5f9" stroke="#0f172a" stroke-width="2"/>
+                    <text x="75" y="146" fill="#0f172a" font-size="9" text-anchor="middle">Terminal 1</text>
+
+                    <rect x="240" y="130" width="70" height="26" rx="4" fill="#f1f5f9" stroke="#0f172a" stroke-width="2"/>
+                    <text x="275" y="146" fill="#0f172a" font-size="9" text-anchor="middle">Local Server</text>
+
+                    <line x1="175" y1="40" x2="175" y2="70" stroke="#0f172a" stroke-width="1.5"/>
+                    <line x1="175" y1="100" x2="75" y2="130" stroke="#0f172a" stroke-width="1.5"/>
+                    <line x1="175" y1="100" x2="275" y2="130" stroke="#0f172a" stroke-width="1.5"/>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px;">CPU Instruction Flow Steps</h3>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">
+                  Processing steps during the foundational Fetch-Decode-Execute CPU instruction cycle:
+                </p>
+                <ol style="font-size: 0.85rem; padding-left: 18px; color: #334155;" class="tree-items">
+                  <li><strong>Fetch:</strong> Memory address values register inside the Program Counter (PC), transferring payload components via internal data buses.</li>
+                  <li><strong>Decode:</strong> The Control Unit (CU) interprets machine operation codes inside Instruction Registers.</li>
+                  <li><strong>Execute:</strong> Calculated outputs update primary ALU and Accumulator registers.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= PAGE: UNIT 2 ================= -->
+          <div id="page-unit2" class="sim-page hidden">
+            <div class="panel-header">
+              <span class="badge badge-secondary">Unit 2: Creating Systems to Manage Information</span>
+              <h2 class="panel-title">Relational Databases & SQL Queries</h2>
+              <p class="panel-description">Relational database configurations, normalizations, and operational SQL queries.</p>
+            </div>
+
+            <div class="dual-grid">
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px;">Entity Relationship Schemas</h3>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">Design schemas showing primary key structures:</p>
+                <div class="directory-tree">
+                  <div class="tree-folder">[Table: Students]</div>
+                  <div class="tree-items">
+                    <div class="tree-file">StudentID : INT (PK)</div>
+                    <div class="tree-file">FirstName : VARCHAR(50)</div>
+                    <div class="tree-file">LastName : VARCHAR(50)</div>
+                    <div class="tree-file">ClassGroup : VARCHAR(10)</div>
+                  </div>
+                  
+                  <div class="tree-folder">[Table: Tasks]</div>
+                  <div class="tree-items">
+                    <div class="tree-file">TaskID : INT (PK)</div>
+                    <div class="tree-file">TaskName : VARCHAR(100)</div>
+                    <div class="tree-file">MaxGrade : INT</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive SQL simulation sandbox -->
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px;">Interactive SQL Sandbox</h3>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">Select an evaluation template below and trigger the local engine:</p>
+                
+                <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+                  <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 0.75rem;" onclick="loadSQLTemplate(1)">Select All Students</button>
+                  <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 0.75rem;" onclick="loadSQLTemplate(2)">Filter High Grades</button>
+                </div>
+
+                <div class="code-editor-box">
+                  <div>-- Simulated SQLite Database Editor --</div>
+                  <textarea id="sql-textarea-editor" rows="3">SELECT * FROM Students ORDER BY LastName ASC;</textarea>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
+                  <span id="sql-console-feedback" style="font-size: 0.75rem; font-weight: 700; color: #64748b;">Ready</span>
+                  <button class="btn" style="padding: 6px 12px; font-size: 0.8rem;" onclick="simulateSQLRun()">Execute SQL</button>
+                </div>
+
+                <div id="sql-results-view" style="margin-top: 14px; font-size: 0.8rem; font-family: monospace; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
+                  (Output table displays here on execution)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= PAGE: UNIT 6 ================= -->
+          <div id="page-unit6" class="sim-page hidden">
+            <div class="panel-header">
+              <span class="badge badge-secondary">Unit 6: Website Development</span>
+              <h2 class="panel-title">Bespoke Structural Wireframing</h2>
+              <p class="panel-description">Documenting semantic HTML divisions, responsive grids, and layout prototypes.</p>
+            </div>
+
+            <div class="dual-grid">
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px;">Wireframe Grid Wireframe Outline</h3>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 16px;">
+                  This blueprint structure demonstrates consistent responsive column allocation models.
+                </p>
+                <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; padding: 16px; border-radius: 6px; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="border: 2px dashed #94a3b8; text-align: center; font-size: 0.75rem; font-weight: bold; padding: 6px; color: #475569;">
+                    Header Container [100% Width]
+                  </div>
+                  <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 8px;">
+                    <div style="border: 2px dashed #94a3b8; text-align: center; font-size: 0.75rem; font-weight: bold; padding: 24px; color: #475569;">
+                      Sub Navigation [Sidebar Width: 33%]
+                    </div>
+                    <div style="border: 2px dashed #94a3b8; text-align: center; font-size: 0.75rem; font-weight: bold; padding: 24px; color: #475569;">
+                      Main Dynamic Stage [Viewport Width: 66%]
+                    </div>
+                  </div>
+                  <div style="border: 2px dashed #94a3b8; text-align: center; font-size: 0.75rem; font-weight: bold; padding: 6px; color: #475569;">
+                    Footer Grid [100% Width]
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px;">Responsive Design Validation</h3>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">
+                  This structure addresses critical assessment performance objectives:
+                </p>
+                <ul style="font-size: 0.85rem; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; color: #334155;">
+                  <li><strong>Semantic Divisions:</strong> Correct utilization of header, nav, main, section, and footer containers.</li>
+                  <li><strong>Responsive Grids:</strong> CSS column behaviors dynamically collapse on screens smaller than 768px.</li>
+                  <li><strong>WCAG Contrast Standards:</strong> High contrast color schemes used throughout to preserve accessibility metrics.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= PAGE: UNIT 7 ================= -->
+          <div id="page-unit7" class="sim-page hidden">
+            <div class="panel-header">
+              <span class="badge badge-secondary">Unit 7: Mobile Apps Development</span>
+              <h2 class="panel-title">Mobile UI Navigation Wireframes</h2>
+              <p class="panel-description">Designing application journey flows, mobile interactions, and user storyboards.</p>
+            </div>
+
+            <div class="dual-grid">
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px;">User Mobile Navigation Flow</h3>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">
+                  Step-by-step app flow diagrams for portfolio authentication and checking:
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; padding: 8px; border-radius: 4px; font-size: 0.75rem;">
+                    <strong>Step A:</strong> Login parameters evaluated on Auth Module.
+                  </div>
+                  <div style="text-align: center; color: #64748b; font-size: 0.8rem;"><i class="fa-solid fa-arrow-down"></i></div>
+                  <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; padding: 8px; border-radius: 4px; font-size: 0.75rem;">
+                    <strong>Step B:</strong> Redirects authenticated session context keys to Core Dashboard.
+                  </div>
+                  <div style="text-align: center; color: #64748b; font-size: 0.8rem;"><i class="fa-solid fa-arrow-down"></i></div>
+                  <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; padding: 8px; border-radius: 4px; font-size: 0.75rem;">
+                    <strong>Step C:</strong> User selects a unit module and queries local resources.
+                  </div>
+                </div>
+              </div>
+
+              <!-- High contrast mobile app model wireframe -->
+              <div class="panel-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <h3 style="margin-bottom: 12px; align-self: flex-start;">Interactive Frame Sandbox</h3>
+                <div style="width: 200px; border: 4px solid #0f172a; border-radius: 16px; background-color: #ffffff; padding: 12px; display: flex; flex-direction: column; gap: 12px;">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: #64748b; font-weight: bold;">
+                    <span>12:00</span>
+                    <i class="fa-solid fa-battery-three-quarters"></i>
+                  </div>
+                  <div style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; text-align: center;">
+                    <i class="fa-solid fa-mobile-screen" style="font-size: 2rem; color: #0f172a; margin-bottom: 6px;"></i>
+                    <p style="font-size: 0.7rem; font-weight: bold; color: #0f172a;">AlexApp Prototype</p>
+                  </div>
+                  <button class="btn" style="width: 100%; font-size: 0.7rem; padding: 6px;" onclick="triggerAppSimulatorFeedback()">
+                    Tap Button
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= PAGE: UNIT 12 ================= -->
+          <div id="page-unit12" class="sim-page hidden">
+            <div class="panel-header">
+              <span class="badge badge-secondary">Unit 12: Software Design</span>
+              <h2 class="panel-title">Structured Algorithms & Matrix Specifications</h2>
+              <p class="panel-description">Logical flow structures, algorithmic pseudocode design, and test matrix models.</p>
+            </div>
+
+            <div class="dual-grid">
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px;">Pseudocode Verification Logic</h3>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">
+                  This systematic sequence represents the baseline security validation logic model:
+                </p>
+                <div class="code-editor-box" style="font-size: 0.75rem; background-color: #f8fafc; border: 1px solid #cbd5e1; color: #0f172a;">
+                  <div><span style="font-weight: bold; color: #0f172a;">FUNCTION</span> ValidateUserAccess(userID, userPass)</div>
+                  <div style="padding-left: 15px; color: #475569;">DECLARE resultState AS BOOLEAN = FALSE</div>
+                  <div style="padding-left: 15px; color: #475569;">DECLARE storedHash AS STRING = QueryDB(userID)</div>
+                  <div style="padding-left: 15px; color: #0f172a; font-weight: bold;">IF (storedHash == HashFunction(userPass)) THEN</div>
+                  <div style="padding-left: 30px; color: #475569;">SET resultState = TRUE</div>
+                  <div style="padding-left: 15px; color: #0f172a; font-weight: bold;">ENDIF</div>
+                  <div style="padding-left: 15px; color: #166534; font-weight: bold;">RETURN resultState</div>
+                  <div><span style="font-weight: bold; color: #0f172a;">END FUNCTION</span></div>
+                </div>
+              </div>
+
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px;">Academic Testing Matrix</h3>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">
+                  Testing variables validated within system logic:
+                </p>
+                <div class="data-table-container">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Ref</th>
+                        <th>Target Area</th>
+                        <th>Test Case Parameters</th>
+                        <th>Outcome</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="matrix-ref">U12-T1</td>
+                        <td>Auth Match</td>
+                        <td>"adm", "secure_pass"</td>
+                        <td><span class="badge badge-success">Passed</span></td>
+                      </tr>
+                      <tr>
+                        <td class="matrix-ref">U12-T2</td>
+                        <td>Empty Fields</td>
+                        <td>"", ""</td>
+                        <td><span class="badge badge-success">Passed</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= PAGE: UNIT 21 ================= -->
+          <div id="page-unit21" class="sim-page hidden">
+            <div class="panel-header">
+              <span class="badge badge-secondary">Unit 21: Cryptography</span>
+              <h2 class="panel-title">Cryptographic Systems & Substitution Algorithms</h2>
+              <p class="panel-description">Understanding security barriers, symmetric keys, and active cipher shift algorithms.</p>
+            </div>
+
+            <div class="dual-grid">
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px;">The Caesar Cipher Algorithm</h3>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">
+                  The Caesar Cipher is a classic symmetric substitution algorithm. Each letter in the plaintext message is shifted by a constant key value ($K$) down the alphabet grid.
+                </p>
+                <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px; font-size: 0.8rem; margin-bottom: 12px; font-family: monospace; text-align: center;">
+                  E_k(x) = (x + k) \pmod{26}
+                </div>
+                <p style="font-size: 0.8rem; color: #64748b;">
+                  Where $x$ represents the position of the plaintext character and $k$ represents the shift key value parameter.
+                </p>
+              </div>
+
+              <!-- Interactive playable Caesar Cipher system -->
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px;">Interactive Caesar Cipher Sandbox</h3>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">
+                  Input a custom message to watch the algorithm execute character swaps:
+                </p>
+                
+                <div class="form-group">
+                  <label>Raw Input Message</label>
+                  <input type="text" id="cipher-text-field" class="form-control" value="SAMPLE BTEC WORK" oninput="executePlaintextCipherShift()">
+                </div>
+
+                <div class="form-group">
+                  <label>Key Shift Value (K): <span id="cipher-slider-value" style="font-weight: bold;">4</span></label>
+                  <input type="range" id="cipher-shift-slider" min="1" max="25" value="4" style="width: 100%; accent-color: #0f172a;" oninput="updateCipherShiftSlider(this.value)">
+                </div>
+
+                <div style="background-color: #0f172a; color: #ffffff; padding: 14px; border-radius: 6px; font-family: monospace; font-size: 0.9rem; text-align: center; font-weight: bold; tracking-wider;" id="cipher-output-field">
+                  WETLPI FXIG ASVO
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= PAGE: UNIT 25 ================= -->
+          <div id="page-unit25" class="sim-page hidden">
+            <div class="panel-header">
+              <span class="badge badge-secondary">Unit 25: Internet of Things (IoT)</span>
+              <h2 class="panel-title">Smart Devices & Sensor Controller Automation</h2>
+              <p class="panel-description">Assessing microcontrollers, physical sensors, and manual override trigger interfaces.</p>
+            </div>
+
+            <div class="dual-grid">
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px;">ESP32 Controller Module</h3>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">
+                  These parameters map the incoming environmental sensor metrics updated on the physical board input registers:
+                </p>
+                <div class="directory-tree">
+                  <div class="tree-folder">[In-memory Controller Registry]</div>
+                  <div class="tree-items">
+                    <div class="tree-file">PIN 4 (DHT11 Ambient Temp) : <span style="font-weight: bold; color: #0f172a;">24.5 °C</span></div>
+                    <div class="tree-file">PIN 12 (Photoresistor Light) : <span style="font-weight: bold; color: #0f172a;">380 lm</span></div>
+                    <div class="tree-file">PIN 16 (Relay Switch State) : <span style="font-weight: bold; color: #0f172a;">Active</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive IoT Actuators simulation -->
+              <div class="panel-card">
+                <h3 style="margin-bottom: 12px;">Interactive Actuator Override Controls</h3>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">
+                  Toggle the switches below to manually control peripheral system hardware states:
+                </p>
+
+                <div class="switch-row">
+                  <div>
+                    <span style="font-weight: bold; font-size: 0.85rem; color: #0f172a; block;">Living Room Light</span>
+                    <p style="font-size: 0.75rem; color: #64748b;" id="light-override-status">Deactivated</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="light-toggle-checkbox" onchange="toggleIotSensorActuator('light')">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="switch-row">
+                  <div>
+                    <span style="font-weight: bold; font-size: 0.85rem; color: #0f172a; block;">Cooling Fan System</span>
+                    <p style="font-size: 0.75rem; color: #64748b;" id="fan-override-status">Deactivated</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="fan-toggle-checkbox" onchange="toggleIotSensorActuator('fan')">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 2: REFINED ASSET ARCHITECTURE (DIRECTORY & MASTER REGISTRY) -->
+    <!-- ================================================================= -->
+    <div id="tab-content-assets" class="tab-pane hidden">
+      
+      <div class="panel-card" style="margin-bottom: 24px;">
+        <span class="badge badge-primary">Physical Structure</span>
+        <h2 class="panel-title">Asset Directory Architecture & Resource Map</h2>
+        <p class="panel-description">
+          A physical representation of the local workspace organization structure alongside the Master Asset mapping database.
+        </p>
+      </div>
+
+      <div class="grid-3-col">
+        <!-- Directory Map Tree left block -->
+        <div class="panel-card">
+          <h3 style="margin-bottom: 12px; font-size: 1.1rem; color: #0f172a;">Logical Directory Tree</h3>
+          <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 16px;">This structure maps the asset folder paths as saved inside the digital workspace repository:</p>
+          
+          <div class="directory-tree">
+            <div class="tree-folder"><i class="fa-solid fa-folder-open"></i> /assets</div>
+            
+            <div class="tree-items">
+              <div class="tree-folder"><i class="fa-solid fa-folder"></i> /images</div>
+              <div class="tree-items" style="border-left: none; margin-bottom: 6px;">
+                <div class="tree-file"><i class="fa-regular fa-image"></i> avatar.png</div>
+                <div class="tree-file"><i class="fa-regular fa-image"></i> network_schema.png</div>
+                <div class="tree-file"><i class="fa-regular fa-image"></i> wireframe_web.png</div>
+              </div>
+
+              <div class="tree-folder"><i class="fa-solid fa-folder"></i> /videos</div>
+              <div class="tree-items" style="border-left: none; margin-bottom: 6px;">
+                <div class="tree-file"><i class="fa-regular fa-file-video"></i> iot_sensor_loop.mp4</div>
+                <div class="tree-file"><i class="fa-regular fa-file-video"></i> app_demo.mp4</div>
+              </div>
+
+              <div class="tree-folder"><i class="fa-solid fa-folder"></i> /documents</div>
+              <div class="tree-items" style="border-left: none; margin-bottom: 0;">
+                <div class="tree-file"><i class="fa-regular fa-file-pdf"></i> system_specs.pdf</div>
+                <div class="tree-file"><i class="fa-regular fa-file-word"></i> test_plan_matrix.docx</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Master Registry table right block -->
+        <div class="panel-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+            <h3 style="font-size: 1.1rem; color: #0f172a;">Master Asset Registry</h3>
+            <input type="text" id="asset-filter-input" placeholder="Search assets (e.g. png, pdf)..." class="form-control" style="max-width: 240px; padding: 6px 12px;" oninput="applyAssetTableFilter()">
+          </div>
+
+          <div class="data-table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Asset File Name</th>
+                  <th>Format</th>
+                  <th>Folder Location</th>
+                  <th>Target Webpage Use</th>
+                </tr>
+              </thead>
+              <tbody id="assets-table-body">
+                <tr class="asset-grid-row">
+                  <td style="font-weight: bold;">avatar.png</td>
+                  <td>PNG Image</td>
+                  <td>/assets/images/</td>
+                  <td><span class="badge badge-secondary">Home Page</span></td>
+                </tr>
+                <tr class="asset-grid-row">
+                  <td style="font-weight: bold;">network_schema.png</td>
+                  <td>PNG Image</td>
+                  <td>/assets/images/</td>
+                  <td><span class="badge badge-secondary">Unit 1 Page</span></td>
+                </tr>
+                <tr class="asset-grid-row">
+                  <td style="font-weight: bold;">wireframe_web.png</td>
+                  <td>PNG Image</td>
+                  <td>/assets/images/</td>
+                  <td><span class="badge badge-secondary">Unit 6 Page</span></td>
+                </tr>
+                <tr class="asset-grid-row">
+                  <td style="font-weight: bold;">iot_sensor_loop.mp4</td>
+                  <td>MP4 Video</td>
+                  <td>/assets/videos/</td>
+                  <td><span class="badge badge-secondary">Unit 25 Page</span></td>
+                </tr>
+                <tr class="asset-grid-row">
+                  <td style="font-weight: bold;">app_demo.mp4</td>
+                  <td>MP4 Video</td>
+                  <td>/assets/videos/</td>
+                  <td><span class="badge badge-secondary">Unit 7 Page</span></td>
+                </tr>
+                <tr class="asset-grid-row">
+                  <td style="font-weight: bold;">system_specs.pdf</td>
+                  <td>PDF File</td>
+                  <td>/assets/documents/</td>
+                  <td><span class="badge badge-secondary">Unit 12 Page</span></td>
+                </tr>
+                <tr class="asset-grid-row">
+                  <td style="font-weight: bold;">test_plan_matrix.docx</td>
+                  <td>DOCX Document</td>
+                  <td>/assets/documents/</td>
+                  <td><span class="badge badge-secondary">Unit 12 Page</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 3: DESIGN & DEVELOPMENT COMMENTARY -->
+    <!-- ================================================================= -->
+    <div id="tab-content-documentation" class="tab-pane hidden">
+      
+      <div class="grid-3-col">
+        
+        <!-- Interactive Playgrounds for assessor evaluation -->
+        <div class="panel-card" style="display: flex; flex-direction: column; gap: 24px;">
+          <div>
+            <h3 style="margin-bottom: 6px; font-size: 1.1rem; color: #0f172a;">Interactive Component Playground</h3>
+            <p style="font-size: 0.8rem; color: #64748b;">Verify active interactive rollover and tactile state behaviors:</p>
+          </div>
+
+          <!-- Dynamic Rollover Card playground -->
+          <div>
+            <span style="display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 6px;">1. Dynamic Rollover Element</span>
+            <div class="interactive-card">
+              <div class="default-details">
+                <i class="fa-solid fa-arrows-spin" style="font-size: 1.5rem; color: #475569; margin-bottom: 6px;"></i>
+                <p style="font-size: 0.80rem; font-weight: 700;">Default Display State</p>
+                <p style="font-size: 0.75rem; color: #64748b;">Hover your pointer here to trigger details.</p>
+              </div>
+              <div class="hover-details">
+                <i class="fa-solid fa-circle-check" style="font-size: 1.5rem; color: #166534; margin-bottom: 6px;"></i>
+                <p style="font-size: 0.80rem; font-weight: 700; color: #166534;">Rollover State Activated</p>
+                <p style="font-size: 0.75rem; color: #166534;">Met BTEC Unit 3 tactile feedback expectations.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Custom Buttons playground -->
+          <div>
+            <span style="display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 6px;">2. Click/Touch State Validation</span>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn" style="flex: 1; padding: 12px;" onclick="triggerTactileVerificationFeedback('Primary Button')">Primary Click</button>
+              <button class="btn btn-secondary" style="flex: 1; padding: 12px;" onclick="triggerTactileVerificationFeedback('Secondary Button')">Secondary Click</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Academic Explanations & Development rationale commentary -->
+        <div class="panel-card" style="display: flex; flex-direction: column; gap: 24px;">
+          <div style="border-b: 1px solid #cbd5e1; padding-bottom: 12px;">
+            <h2 class="panel-title">Portfolio Architecture & Requirements Rationale</h2>
+            <p class="panel-description">Detailed commentaries outlining grading requirements and design parameters.</p>
+          </div>
+
+          <div>
+            <h3 style="font-size: 1rem; color: #0f172a; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+              <span style="height: 6px; width: 6px; background-color: #0f172a; border-radius: 50%;"></span>
+              1. Purpose of Webpages and Met Metrics
+            </h3>
+            <p style="font-size: 0.85rem; color: #334155; margin-bottom: 8px; line-height: 1.6;">
+              Each simulated webpage within this digital portfolio satisfies a distinct grading requirement:
+            </p>
+            <ul style="font-size: 0.8rem; padding-left: 20px; color: #475569; display: flex; flex-direction: column; gap: 6px;">
+              <li><strong>Homepage:</strong> Unifies systemic portfolios under a standard high-contrast accessibility context.</li>
+              <li><strong>Unit 1 & 2:</strong> Evaluates hardware layouts, bus networks, and operational SQL constraints via live play sands.</li>
+              <li><strong>Unit 6 & 7:</strong> Focuses on wireframe plans, column measurements, and mobile flow blueprints.</li>
+              <li><strong>Unit 12:</strong> Highlights software algorithm logic and formal functional tests.</li>
+              <li><strong>Unit 21 & 25:</strong> Provides active ciphers and IoT ESP32 ambient controllers to illustrate operational cybersecurity and smart hardware deployments.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 style="font-size: 1rem; color: #0f172a; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+              <span style="height: 6px; width: 6px; background-color: #0f172a; border-radius: 50%;"></span>
+              2. Navigation Framework & Aesthetic Choices
+            </h3>
+            <p style="font-size: 0.85rem; color: #334155; line-height: 1.6;">
+              Colors have been limited to neutral greys, black, and whites to enforce absolute readability and focus strictly on content structure (WCAG AAA compliant). The navigation employs high contrast active state buttons inside a simulated desktop chrome. This dual-path layout allows users to easily jump from the home dashboard directly to localized unit pages, keeping navigation paths clear.
+            </p>
+          </div>
+
+          <div>
+            <h3 style="font-size: 1rem; color: #0f172a; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+              <span style="height: 6px; width: 6px; background-color: #0f172a; border-radius: 50%;"></span>
+              3. Meeting Technical and User Needs
+            </h3>
+            <p style="font-size: 0.85rem; color: #334155; line-height: 1.6;">
+              This system meets college requirements by organizing all files within logically structured assets folders. Interactive elements, including form inputs, slider mechanisms, toggle triggers, and SQL code consoles, provide instant feedback notifications to replace intrusive browser alert overlays, ensuring a smooth and responsive user experience.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- System notifications alert wrapper -->
+  <div id="custom-toast-holder" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 8px;"></div>
+
+  <!-- Footer block -->
+  <footer>
+    <p>BTEC National Level 3 Extended Diploma in Computing &bull; Unit 3: Digital Portfolio Design Hub</p>
+    <p style="font-size: 0.7rem; margin-top: 4px; color: #94a3b8;">Designed by Alex Mercer &bull; Assessment Companion v1.1 &bull; Optimized for standalone deployment</p>
+  </footer>
+
+  <!-- 
+    ========================================================================
+    CORE JAVASCRIPT CONTROLLERS
+    All interactive simulation, calculation logic and state changes.
+    ========================================================================
+  -->
+  <script>
+    // Tab controller to shift between simulator views, asset grids and documents
+    function switchTab(tabId) {
+      // Hide all panes
+      document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.classList.add('hidden');
+      });
+      // Show targeted pane
+      document.getElementById('tab-content-' + tabId).classList.remove('hidden');
+
+      // Update button highlights
+      document.querySelectorAll('.hub-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.getElementById('tab-btn-' + tabId).classList.add('active');
+    }
+
+    // Web Browser simulator page loader
+    function loadBrowserPage(pageId) {
+      // Hide all sub pages
+      document.querySelectorAll('.sim-page').forEach(page => {
+        page.classList.add('hidden');
+      });
+      // Show targeted sub page
+      document.getElementById('page-' + pageId).classList.remove('hidden');
+
+      // Update Address Bar context
+      document.getElementById('browser-address-page').textContent = pageId;
+
+      // Highlight target nav buttons
+      document.querySelectorAll('.browser-nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.getElementById('nav-btn-' + pageId).classList.add('active');
+    }
+
+    // SQLite Simulator engine logic
+    function loadSQLTemplate(num) {
+      const sqlBox = document.getElementById('sql-textarea-editor');
+      if (num === 1) {
+        sqlBox.value = "SELECT * FROM Students ORDER BY LastName ASC;";
+      } else {
+        sqlBox.value = "SELECT * FROM Tasks WHERE MaxGrade >= 90;";
+      }
+    }
+
+    function simulateSQLRun() {
+      const sqlInput = document.getElementById('sql-textarea-editor').value;
+      const resultsView = document.getElementById('sql-results-view');
+      const feedback = document.getElementById('sql-console-feedback');
+
+      feedback.textContent = "Processing...";
+      
+      setTimeout(() => {
+        if (sqlInput.includes("ORDER BY LastName ASC")) {
+          resultsView.innerHTML = `
+            <table style="width:100%; text-align:left; border-collapse:collapse;">
+              <tr style="border-b:1px solid #cbd5e1; font-weight:bold;">
+                <td style="padding:4px;">StudentID</td>
+                <td style="padding:4px;">FirstName</td>
+                <td style="padding:4px;">LastName</td>
+              </tr>
+              <tr>
+                <td style="padding:4px;">101</td>
+                <td style="padding:4px;">Jane</td>
+                <td style="padding:4px;">Doe</td>
+              </tr>
+              <tr>
+                <td style="padding:4px;">102</td>
+                <td style="padding:4px;">Alex</td>
+                <td style="padding:4px;">Mercer</td>
+              </tr>
+            </table>
+          `;
+          triggerToastNotification("SQL Query ran successfully: Returned 2 entries.", "success");
+        } else if (sqlInput.includes("MaxGrade >= 90")) {
+          resultsView.innerHTML = `
+            <table style="width:100%; text-align:left; border-collapse:collapse;">
+              <tr style="border-b:1px solid #cbd5e1; font-weight:bold;">
+                <td style="padding:4px;">TaskID</td>
+                <td style="padding:4px;">TaskName</td>
+                <td style="padding:4px;">MaxGrade</td>
+              </tr>
+              <tr>
+                <td style="padding:4px;">501</td>
+                <td style="padding:4px;">Unit 3 Digital Build</td>
+                <td style="padding:4px;">100</td>
+              </tr>
+            </table>
+          `;
+          triggerToastNotification("SQL Query ran successfully: Returned 1 entry.", "success");
+        } else {
+          resultsView.innerHTML = `<span style="color:#ef4444;"><i class="fa-solid fa-triangle-exclamation"></i> Warning: Syntax structure matches generic tables, output recordset is empty.</span>`;
+          triggerToastNotification("No records matched.", "error");
+        }
+        feedback.textContent = "Success";
+      }, 400);
+    }
+
+    // Playable Caesar Cipher Shift actions
+    function updateCipherShiftSlider(val) {
+      document.getElementById('cipher-slider-value').textContent = val;
+      executePlaintextCipherShift();
+    }
+
+    function executePlaintextCipherShift() {
+      const rawText = document.getElementById('cipher-text-field').value.toUpperCase();
+      const shiftValue = parseInt(document.getElementById('cipher-shift-slider').value);
+      const outputField = document.getElementById('cipher-output-field');
+      
+      let cipherTextOutput = "";
+
+      for (let i = 0; i < rawText.length; i++) {
+        let code = rawText.charCodeAt(i);
+        if (code >= 65 && code <= 90) { // A-Z ASCII
+          let shiftedCode = ((code - 65 + shiftValue) % 26) + 65;
+          cipherTextOutput += String.fromCharCode(shiftedCode);
+        } else {
+          cipherTextOutput += rawText.charAt(i); // Preserve spaces and numbers
+        }
+      }
+      outputField.textContent = cipherTextOutput;
+    }
+
+    // IoT actator states handler
+    function toggleIotSensorActuator(actuatorType) {
+      const checkbox = document.getElementById(actuatorType + '-toggle-checkbox');
+      const statusElement = document.getElementById(actuatorType + '-override-status');
+
+      if (checkbox.checked) {
+        statusElement.textContent = "Override: Active (Online)";
+        statusElement.style.color = "#166534";
+        statusElement.style.fontWeight = "bold";
+        triggerToastNotification(`ESP32 ${actuatorType.toUpperCase()} Command override triggered: ON`, "success");
+      } else {
+        statusElement.textContent = "Deactivated";
+        statusElement.style.color = "#64748b";
+        statusElement.style.fontWeight = "normal";
+        triggerToastNotification(`ESP32 ${actuatorType.toUpperCase()} Command override triggered: OFF`, "info");
+      }
+    }
+
+    // Mobile App frame validation trigger
+    function triggerAppSimulatorFeedback() {
+      triggerToastNotification("Mobile touch input registration successful.", "success");
+    }
+
+    // Feedback verifier form submit simulation
+    function submitFormSimulation(event) {
+      event.preventDefault();
+      const verifierName = document.getElementById('verifier-name').value;
+      triggerToastNotification(`Feedback saved. Validation record logged for: ${verifierName}`, "success");
+      document.getElementById('feedback-form').reset();
+    }
+
+    // Interactive custom notification toast utility (replaces alert popups)
+    function triggerToastNotification(messageText, notificationType) {
+      const container = document.getElementById('custom-toast-holder');
+      const toast = document.createElement('div');
+      
+      toast.className = 'toast-message';
+      if (notificationType === 'error') {
+        toast.style.borderLeftColor = '#ef4444';
+      } else if (notificationType === 'info') {
+        toast.style.borderLeftColor = '#3b82f6';
+      }
+      
+      toast.innerHTML = `<i class="fa-solid fa-circle-info"></i> <span>${messageText}</span>`;
+      container.appendChild(toast);
+
+      // Dismiss dynamic notification card after 3.5 seconds
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => { toast.remove(); }, 300);
+      }, 3500);
+    }
+
+    // Tactile Lab controls handler
+    function triggerTactileVerificationFeedback(btnLabel) {
+      triggerToastNotification(`Feedback state validated for component: ${btnLabel}`, "info");
+    }
+
+    // Client side filter search engine logic for asset list mapping
+    function applyAssetTableFilter() {
+      const searchVal = document.getElementById('asset-filter-input').value.toLowerCase();
+      const rows = document.querySelectorAll('.asset-grid-row');
+
+      rows.forEach(row => {
+        const textContent = row.innerText.toLowerCase();
+        if (textContent.includes(searchVal)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+
+    // Run baseline initializations on viewport load
+    window.onload = function() {
+      executePlaintextCipherShift();
+    }
+  </script>
+</body>
+</html>
